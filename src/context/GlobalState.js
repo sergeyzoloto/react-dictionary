@@ -5,6 +5,7 @@ import axios from 'axios';
 // Initial mock state
 const initialState = {
   collections: [],
+  words: [],
   error: null,
   loading: true,
 };
@@ -19,6 +20,13 @@ export const GlobalProvider = ({ children }) => {
   async function someAction() {
     try {
       const response = await axios.get('/api');
+      /* const response = await fetch(
+      `https://api`,
+      {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+      },*/
+
       dispatch({
         type: 'SOME_ACTION',
         payload: response.data.data,
@@ -32,7 +40,8 @@ export const GlobalProvider = ({ children }) => {
   }
 
   const value = {
-    state: state.data,
+    collections: state.data.collections,
+    words: state.data.words,
     error: state.error,
     loading: state.loading,
     someAction,
