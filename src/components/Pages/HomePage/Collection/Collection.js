@@ -73,7 +73,9 @@ function Word({ word }) {
   } else {
     wordContent = (
       <>
-        <div>{word.word}</div>
+        <div>
+          <Link to={'/' + word.id}>{word.word}</Link>
+        </div>
         <label>
           <button
             onClick={() => {
