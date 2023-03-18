@@ -1,12 +1,19 @@
 import React from 'react';
-import './Header.css';
 
 const Header = () => {
+  function menuOnClick() {
+    document.getElementById('menu-bar').classList.toggle('change');
+  }
   return (
     <>
-      <div className="header">
-        <h3>Words</h3>
-      </div>
+      <p>Header</p>
+      <button onClick={menuOnClick}>
+        <div id="menu-bar">
+          <div id="bar1" className="bar"></div>
+          <div id="bar2" className="bar"></div>
+          <div id="bar3" className="bar"></div>
+        </div>
+      </button>
     </>
   );
 };
