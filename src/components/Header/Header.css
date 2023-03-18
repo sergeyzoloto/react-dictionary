@@ -1,0 +1,9 @@
+.header {
+  border: 1px solid red;
+}
+
+.header h3 {
+  margin: 0 100px;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+}
