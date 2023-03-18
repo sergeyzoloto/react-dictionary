@@ -28,3 +28,11 @@
 .collection-item > * {
   margin: 4px;
 }
+
+.side-bar {
+  display: none;
+}
+
+.open {
+  display: block;
+}

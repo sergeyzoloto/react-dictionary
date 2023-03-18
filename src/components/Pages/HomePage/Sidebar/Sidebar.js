@@ -6,7 +6,7 @@ import AddNewCollection from './AddNewCollection';
 const Sidebar = () => {
   const context = useWordsContext();
   return (
-    <>
+    <div id="side-bar" className="side-bar">
       <h3>Sidebar</h3>
       {context.data.collections.map((item) => (
         <div className="collection-item" key={item.id}>
@@ -14,7 +14,7 @@ const Sidebar = () => {
         </div>
       ))}
       <AddNewCollection />
-    </>
+    </div>
   );
 };
 

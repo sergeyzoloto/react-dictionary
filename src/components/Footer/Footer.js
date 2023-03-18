@@ -1,19 +1,29 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import './Footer.css';
 
 const Footer = () => {
+  const [isOpen, setIsOpen] = useState(false);
+  const classToggle = useMemo(() => {
+    return isOpen ? 'open' : '';
+  }, [isOpen]);
+
   function menuOnClick() {
-    document.getElementById('menu-bar').classList.toggle('change');
+    document.getElementById('side-bar').classList.toggle('open');
+    setIsOpen((prevState) => {
+      return !prevState;
+    });
   }
+
   function addOnClick() {
-    document.getElementById('add-bar').classList.toggle('change');
+    document.getElementById('add-bar').classList.toggle('open');
   }
+
   return (
     <>
       <div className="footer-container">
         <div className="footer-left">
           <button onClick={menuOnClick}>
-            <div id="menu-bar">
+            <div id="menu-bar" className={classToggle}>
               <div id="bar1" className="bar"></div>
               <div id="bar2" className="bar"></div>
               <div id="bar3" className="bar"></div>

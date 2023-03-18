@@ -64,7 +64,7 @@ function Word({ word }) {
         <input
           value={word.word}
           onChange={(event) => {
-            updateWord({ id: word.id, word: event.target.value });
+            updateWord({ ...word, word: event.target.value });
           }}
         />
         <button onClick={() => setIsEditing(false)}>Save</button>
