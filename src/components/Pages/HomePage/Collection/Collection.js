@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useWordsContext } from '../../../../context/GlobalState';
 import { removeDuplicates } from '../../../../utils/removeDuplicates';
+import { Link } from 'react-router-dom';
 
 const Collection = () => {
   const context = useWordsContext();
@@ -79,7 +80,7 @@ function Word({ word }) {
               setIsEditing(true);
             }}
           >
-            Edit
+            rename
           </button>
         </label>
       </>
@@ -88,18 +89,7 @@ function Word({ word }) {
 
   return (
     <div className="word-container">
-      <label>
-        <button
-          onClick={() => {
-            console.log('open adding to a collection');
-          }}
-        >
-          Add
-        </button>
-      </label>
-
-      {wordContent}
-
+      <Link to={'/' + word.id}>{wordContent}</Link>
       <label>
         <button onClick={() => deleteWord(word.id)}>delete</button>
       </label>
