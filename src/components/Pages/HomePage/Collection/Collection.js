@@ -73,9 +73,7 @@ function Word({ word }) {
   } else {
     wordContent = (
       <>
-        <div>
-          <Link to={'/' + word.id}>{word.word}</Link>
-        </div>
+        <Link to={'/' + word.id}>{word.word}</Link>
         <label>
           <button
             onClick={() => {
@@ -91,7 +89,7 @@ function Word({ word }) {
 
   return (
     <div className="word-container">
-      <Link to={'/' + word.id}>{wordContent}</Link>
+      {wordContent}
       <label>
         <button onClick={() => deleteWord(word.id)}>delete</button>
       </label>
