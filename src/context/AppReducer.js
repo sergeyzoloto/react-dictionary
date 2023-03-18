@@ -40,6 +40,65 @@ export default function AppReducer(state, action) {
         },
       };
 
+    case 'ADD_COLLECTION':
+      return {
+        ...state,
+        data: {
+          words: state.data.words,
+          collections: [action.payload, ...state.data.collections],
+        },
+      };
+
+    case 'UPDATE_COLLECTION':
+      return {
+        ...state,
+        data: {
+          words: state.data.words,
+          collections: state.data.collections.map((collection) => {
+            if (collection.id === action.payload.id) {
+              return action.payload;
+            } else {
+              return collection;
+            }
+          }),
+        },
+      };
+
+    case 'ADD_WORD':
+      return {
+        ...state,
+        data: {
+          words: [action.payload, ...state.data.words],
+          collections: state.data.collections,
+        },
+      };
+
+    case 'UPDATE_WORD':
+      return {
+        ...state,
+        data: {
+          words: state.data.words.map((word) => {
+            if (word.id === action.payload.id) {
+              return action.payload;
+            } else {
+              return word;
+            }
+          }),
+          collections: state.data.collections,
+        },
+      };
+
+    case 'DELETE_WORD':
+      return {
+        ...state,
+        data: {
+          words: state.data.words.filter((element) => {
+            return element.id !== action.payload;
+          }),
+          collections: state.data.collections,
+        },
+      };
+
     case 'GET_COLLECTIONS':
       return state;
 

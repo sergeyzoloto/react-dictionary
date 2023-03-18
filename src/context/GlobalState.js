@@ -89,6 +89,41 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function updateCollection(collection) {
+    dispatch({
+      type: 'UPDATE_COLLECTION',
+      payload: collection,
+    });
+  }
+
+  function addCollection(collection) {
+    dispatch({
+      type: 'ADD_COLLECTION',
+      payload: collection,
+    });
+  }
+
+  function deleteWord(id) {
+    dispatch({
+      type: 'DELETE_WORD',
+      payload: id,
+    });
+  }
+
+  function updateWord(word) {
+    dispatch({
+      type: 'UPDATE_WORD',
+      payload: word,
+    });
+  }
+
+  function addWord(word) {
+    dispatch({
+      type: 'ADD_WORD',
+      payload: word,
+    });
+  }
+
   function getCollections() {
     dispatch({
       type: 'GET_COLLECTIONS',
@@ -100,10 +135,15 @@ export const GlobalProvider = ({ children }) => {
     loading: state.loading,
     error: state.error,
     getDefinition,
-    addActiveCollection,
-    deleteActiveCollection,
     getCollections,
     deleteCollection,
+    updateCollection,
+    addCollection,
+    deleteWord,
+    updateWord,
+    addWord,
+    addActiveCollection,
+    deleteActiveCollection,
   };
 
   return (

@@ -7,8 +7,8 @@ const HomePage = () => {
   return (
     <>
       <h3>HomePage</h3>
-      <Collection />
       <Sidebar />
+      <Collection />
     </>
   );
 };
