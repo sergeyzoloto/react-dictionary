@@ -1,8 +1,42 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useWordsContext } from '../../../../context/GlobalState';
 
 const CollectionButton = ({ collection }) => {
   const context = useWordsContext();
+  const { deleteCollection, updateCollection } = context;
+
+  const [isEditing, setIsEditing] = useState(false);
+  let collectionContent;
+
+  if (isEditing) {
+    collectionContent = (
+      <>
+        <input
+          value={collection.title}
+          onChange={(event) => {
+            updateCollection({ ...collection, title: event.target.value });
+          }}
+        />
+        <button onClick={() => setIsEditing(false)}>Save</button>
+      </>
+    );
+  } else {
+    collectionContent = (
+      <>
+        {collection.title}
+        <label>
+          <button
+            onClick={() => {
+              setIsEditing(true);
+            }}
+          >
+            Edit
+          </button>
+        </label>
+      </>
+    );
+  }
+
   const clickHandler = (event) => {
     event.preventDefault();
     if (collection.isActive) {
@@ -14,17 +48,21 @@ const CollectionButton = ({ collection }) => {
 
   return (
     <>
-      <button
+      <label
         className={
           collection.isActive
             ? 'collection-item-active'
             : 'collection-item-inactive'
         }
-        onClick={clickHandler}
-        value={collection.id}
       >
-        {collection.title}
-      </button>
+        <button
+          className="hidden-btn"
+          onClick={clickHandler}
+          value={collection.id}
+        ></button>
+        {collectionContent}
+        <button onClick={() => deleteCollection(collection.id)}>delete</button>
+      </label>
     </>
   );
 };
