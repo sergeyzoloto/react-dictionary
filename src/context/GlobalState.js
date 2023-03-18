@@ -1,17 +1,16 @@
-import React, { createContext, useContext, useReducer } from 'react';
+import React, { createContext, useContext, useReducer, useState } from 'react';
 import AppReducer from './AppReducer';
 import axios from 'axios';
-import { v4 } from 'uuid';
 import { API } from '../constants';
 
 // Initial mock state
 const words = [
-  { word: 'source', id: v4() },
-  { word: 'target', id: v4() },
-  { word: 'delete', id: v4() },
-  { word: 'update', id: v4() },
-  { word: 'read', id: v4() },
-  { word: 'create', id: v4() },
+  { word: 'source', id: '1' },
+  { word: 'target', id: '2' },
+  { word: 'delete', id: '3' },
+  { word: 'update', id: '4' },
+  { word: 'read', id: '5' },
+  { word: 'create', id: '6' },
 ];
 
 const initialState = {
@@ -20,13 +19,13 @@ const initialState = {
     collections: [
       {
         title: 'verbs',
-        id: v4(),
+        id: '7',
         words: words.slice(-4).map((word) => word.id),
         isActive: true,
       },
       {
         title: 'nouns',
-        id: v4(),
+        id: '8',
         words: words.slice(0, 2).map((word) => word.id),
         isActive: false,
       },
@@ -42,6 +41,7 @@ export const GlobalContext = createContext(initialState);
 
 export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, initialState);
+  const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
 
   // Actions
   async function getDefinition() {
@@ -130,6 +130,20 @@ export const GlobalProvider = ({ children }) => {
     });
   }
 
+  function addWordToCollection(wordId, collectionId) {
+    dispatch({
+      type: 'ADD_WORD_TO_COLLECTION',
+      payload: { wordId, collectionId },
+    });
+  }
+
+  function removeWordFromCollection(wordId, collectionId) {
+    dispatch({
+      type: 'REMOVE_WORD_FROM_COLLECTION',
+      payload: { wordId, collectionId },
+    });
+  }
+
   const value = {
     data: state.data,
     loading: state.loading,
@@ -144,6 +158,10 @@ export const GlobalProvider = ({ children }) => {
     addWord,
     addActiveCollection,
     deleteActiveCollection,
+    addWordToCollection,
+    removeWordFromCollection,
+    sideBarIsOpen,
+    setSideBarIsOpen,
   };
 
   return (

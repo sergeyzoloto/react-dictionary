@@ -29,6 +29,44 @@ export default function AppReducer(state, action) {
         },
       };
 
+    case 'ADD_WORD_TO_COLLECTION':
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          collections: state.data.collections.map((collection) => {
+            if (collection.id === action.payload.collectionId) {
+              return {
+                ...collection,
+                words: [...collection.words, action.payload.wordId],
+              };
+            } else {
+              return collection;
+            }
+          }),
+        },
+      };
+
+    case 'REMOVE_WORD_FROM_COLLECTION':
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          collections: state.data.collections.map((collection) => {
+            if (collection.id === action.payload.collectionId) {
+              return {
+                ...collection,
+                words: state.data.words.filter((element) => {
+                  return element.id !== action.payload.wordId;
+                }),
+              };
+            } else {
+              return collection;
+            }
+          }),
+        },
+      };
+
     case 'DELETE_COLLECTION':
       return {
         ...state,

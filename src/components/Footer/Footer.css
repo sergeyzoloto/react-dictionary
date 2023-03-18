@@ -1,10 +1,3 @@
-*,
-:after,
-:before {
-  margin: 0;
-  box-sizing: border-box;
-}
-
 #menu-bar {
   width: 30px;
   height: 30px;
@@ -30,30 +23,30 @@
   transform: translateY(4px);
 }
 
-.change {
+.open {
   display: block;
 }
 
-.change .bar {
+.open .bar {
   background-color: white;
 }
 
-.change #bar1 {
+.open #bar1 {
   transform: translateY(4px) rotateZ(-45deg);
 }
 
-.change #bar2 {
+.open #bar2 {
   opacity: 0;
 }
 
-.change #bar3 {
+.open #bar3 {
   transform: translateY(-4px) rotateZ(45deg);
 }
-.change #bar4 {
+.open #bar4 {
   transform: translateY(4px) rotateZ(225deg);
 }
 
-.change #bar5 {
+.open #bar5 {
   transform: translateY(0px) rotateZ(135deg);
 }
 

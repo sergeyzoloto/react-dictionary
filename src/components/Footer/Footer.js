@@ -1,19 +1,31 @@
-import React from 'react';
+import React, { useMemo } from 'react';
+import { useWordsContext } from '../../context/GlobalState';
 import './Footer.css';
 
 const Footer = () => {
+  const context = useWordsContext();
+  const { sideBarIsOpen, setSideBarIsOpen } = context;
+
+  const classToggle = useMemo(() => {
+    return sideBarIsOpen ? 'open' : '';
+  }, [sideBarIsOpen]);
+
   function menuOnClick() {
-    document.getElementById('menu-bar').classList.toggle('change');
+    setSideBarIsOpen((prevState) => {
+      return !prevState;
+    });
   }
+
   function addOnClick() {
-    document.getElementById('add-bar').classList.toggle('change');
+    document.getElementById('add-bar').classList.toggle('open');
   }
+
   return (
     <>
       <div className="footer-container">
         <div className="footer-left">
           <button onClick={menuOnClick}>
-            <div id="menu-bar">
+            <div id="menu-bar" className={classToggle}>
               <div id="bar1" className="bar"></div>
               <div id="bar2" className="bar"></div>
               <div id="bar3" className="bar"></div>

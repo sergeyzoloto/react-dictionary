@@ -1,13 +1,13 @@
-.collection-item-active,
-.collection-item-inactive {
+.collection-item-includes,
+.collection-item-exclude {
   border: 1px solid blue;
 }
 
-.collection-item-active {
+.collection-item-includes {
   background-color: red;
   color: white;
 }
-.collection-item-inactive {
+.collection-item-exclude {
   background-color: orange;
   color: white;
 }
@@ -17,7 +17,6 @@
 }
 
 .word-container,
-.collection-item,
 .form-container {
   display: flex;
   flex-direction: row;
