@@ -1,15 +1,17 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
+import { useWordsContext } from '../../context/GlobalState';
 import './Footer.css';
 
 const Footer = () => {
-  const [isOpen, setIsOpen] = useState(false);
+  const context = useWordsContext();
+  const { sideBarIsOpen, setSideBarIsOpen } = context;
+
   const classToggle = useMemo(() => {
-    return isOpen ? 'open' : '';
-  }, [isOpen]);
+    return sideBarIsOpen ? 'open' : '';
+  }, [sideBarIsOpen]);
 
   function menuOnClick() {
-    document.getElementById('side-bar').classList.toggle('open');
-    setIsOpen((prevState) => {
+    setSideBarIsOpen((prevState) => {
       return !prevState;
     });
   }
