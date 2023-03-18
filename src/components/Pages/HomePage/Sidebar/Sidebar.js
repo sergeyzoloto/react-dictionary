@@ -1,7 +1,7 @@
 import React from 'react';
-import { useWordsContext } from '../../../../context/GlobalState';
 import CollectionButton from './CollectionButton';
 import AddNewCollection from './AddNewCollection';
+import { useWordsContext } from '../../../../context/GlobalState.js';
 
 const Sidebar = () => {
   const context = useWordsContext();

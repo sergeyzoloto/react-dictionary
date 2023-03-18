@@ -1,5 +1,5 @@
 .collection-item-includes,
-.collection-item-exclude {
+.collection-item-excludes {
   border: 1px solid blue;
 }
 
@@ -7,7 +7,7 @@
   background-color: red;
   color: white;
 }
-.collection-item-exclude {
+.collection-item-excludes {
   background-color: orange;
   color: white;
 }

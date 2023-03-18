@@ -1,7 +1,13 @@
-import React, { createContext, useContext, useReducer, useState } from 'react';
+import React, {
+  createContext,
+  useContext,
+  useEffect,
+  useReducer,
+  useState,
+} from 'react';
 import AppReducer from './AppReducer';
 import axios from 'axios';
-import { API } from '../constants';
+import { API } from '../context/constants.js';
 
 // Initial mock state
 const words = [
@@ -37,11 +43,25 @@ const initialState = {
 
 // Create context
 export const GlobalContext = createContext(initialState);
-// Provider component
 
+// Provider component
 export const GlobalProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(AppReducer, initialState);
+  function checkStorage() {
+    if (localStorage.getItem('words_storage')) {
+      return JSON.parse(localStorage.getItem('words_storage'));
+    } else {
+      return initialState;
+    }
+  }
+
+  const savedData = checkStorage();
+  const [state, dispatch] = useReducer(AppReducer, savedData);
+
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
+
+  useEffect(() => {
+    localStorage.setItem('words_storage', JSON.stringify(state));
+  }, [state]);
 
   // Actions
   async function getDefinition() {

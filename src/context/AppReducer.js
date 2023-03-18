@@ -1,3 +1,5 @@
+import { removeDuplicates } from '../utils/removeDuplicates';
+
 export default function AppReducer(state, action) {
   /* Reducer is a function to change your state
   and send it down to your application */
@@ -38,7 +40,10 @@ export default function AppReducer(state, action) {
             if (collection.id === action.payload.collectionId) {
               return {
                 ...collection,
-                words: [...collection.words, action.payload.wordId],
+                words: removeDuplicates([
+                  ...collection.words,
+                  action.payload.wordId,
+                ]),
               };
             } else {
               return collection;
@@ -54,12 +59,20 @@ export default function AppReducer(state, action) {
           ...state.data,
           collections: state.data.collections.map((collection) => {
             if (collection.id === action.payload.collectionId) {
-              return {
+              console.log('collection to update is found', collection.title);
+              const result = {
                 ...collection,
-                words: state.data.words.filter((element) => {
-                  return element.id !== action.payload.wordId;
+                words: collection.words.filter((id) => {
+                  return id !== action.payload.wordId;
                 }),
               };
+              console.log(
+                'action.payload.wordId:',
+                typeof action.payload.wordId,
+              );
+              console.log('words:', collection.words);
+              console.log('result', result);
+              return result;
             } else {
               return collection;
             }

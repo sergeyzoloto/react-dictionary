@@ -1,8 +1,7 @@
 import './WordPage.css';
-import React from 'react';
+import React, { useState } from 'react';
 import { useParams } from 'react-router';
-import { useWordsContext } from '../../../context/GlobalState';
-import Sidebar from '../HomePage/Sidebar/Sidebar';
+import { useWordsContext } from '../../../context/GlobalState.js';
 
 function WordPage() {
   const { id } = useParams();
@@ -16,7 +15,6 @@ function WordPage() {
 
   return (
     <>
-      <Sidebar />
       <h3>{word.word}</h3>
       <CollectionList collections={collections} />
     </>
@@ -41,20 +39,23 @@ function Collection({ collection, contains }) {
   const { id } = useParams();
   const context = useWordsContext();
   const { addWordToCollection, removeWordFromCollection } = context;
+  const [includes, setIncludes] = useState(contains);
 
   function handleClick(event) {
     event.preventDefault();
-    if (contains) {
+    if (includes) {
       removeWordFromCollection(id, event.target.value);
+      setIncludes(false);
     } else {
       addWordToCollection(id, event.target.value);
+      setIncludes(true);
     }
   }
 
   return (
     <button
       className={
-        contains ? 'collection-item-includes' : 'collection-item-exclude'
+        includes ? 'collection-item-includes' : 'collection-item-excludes'
       }
       onClick={handleClick}
       value={collection.id}
