@@ -1,0 +1,13 @@
+.collection-item-active,
+.collection-item-inactive {
+  border: 1px solid blue;
+}
+
+.collection-item-active {
+  background-color: red;
+  color: white;
+}
+.collection-item-inactive {
+  background-color: orange;
+  color: white;
+}
