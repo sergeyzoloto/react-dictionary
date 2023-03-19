@@ -6,16 +6,33 @@ import { useWordsContext } from '../../../context/GlobalState.js';
 function WordPage() {
   const { id } = useParams();
   const context = useWordsContext();
-  const { data } = context;
+  const { data, getDefinition } = context;
   const word = data.words.filter((word) => {
     return word.id.toString() === id;
   })[0];
 
   const collections = data.collections;
 
+  function clickHandler() {
+    getDefinition(word.word);
+  }
+
+  const details = { ...word };
+
+  for (const property in details) {
+    console.log(`property: ${property} details[property]:${details[property]}`);
+  }
+
   return (
     <>
       <h3>{word.word}</h3>
+      <div>
+        <h4>source URLs</h4>
+        {word.dictionary.sourceUrls.map((url) => {
+          return <p>{url}</p>;
+        })}
+      </div>
+      <button onClick={clickHandler}>GET</button>
       <CollectionList collections={collections} />
     </>
   );

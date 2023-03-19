@@ -5,7 +5,24 @@ export default function AppReducer(state, action) {
   and send it down to your application */
   switch (action.type) {
     case 'GET_WORD_DEFINITION':
-      return { ...state, data: [action.payload] };
+      console.log('action.payload.data', action.payload[0]);
+      return {
+        ...state,
+        data: {
+          ...state.data,
+          words: state.data.words.map((word) => {
+            if (word.word === action.payload[0].word) {
+              return {
+                word: word.word,
+                id: word.id,
+                dictionary: { ...action.payload[0] },
+              };
+            } else {
+              return word;
+            }
+          }),
+        },
+      };
 
     case 'ADD_ACTIVE_COLLECTION':
       state.data.collections.forEach((element) => {
