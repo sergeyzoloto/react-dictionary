@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useWordsContext } from '../../../../context/GlobalState.js';
+import { useWordsContext } from '../../context/GlobalState.js';
 
 const CollectionButton = ({ collection }) => {
   const context = useWordsContext();
