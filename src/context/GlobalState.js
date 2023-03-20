@@ -58,6 +58,7 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, savedData);
 
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
+  const [newWindowIsOpen, setNewWindowIsOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('words_storage', JSON.stringify(state));
@@ -76,11 +77,6 @@ export const GlobalProvider = ({ children }) => {
         payload: response.data,
       });
     } catch (error) {
-      console.log(
-        'error',
-        Object.keys(error.response.data),
-        error.response.data,
-      );
       dispatch({
         type: 'ERROR',
         payload: error.response.data,
@@ -182,6 +178,8 @@ export const GlobalProvider = ({ children }) => {
     removeWordFromCollection,
     sideBarIsOpen,
     setSideBarIsOpen,
+    newWindowIsOpen,
+    setNewWindowIsOpen,
   };
 
   return (

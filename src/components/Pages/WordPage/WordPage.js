@@ -10,7 +10,6 @@ function WordPage() {
   const context = useWordsContext();
   const { data, getCollections, getDefinition, error, loading } = context;
 
-  console.log('context: ', context);
   useEffect(() => {
     getCollections();
     // eslint-disable-next-line react-hooks/exhaustive-deps

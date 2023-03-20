@@ -24,8 +24,6 @@ function Collection({ wordId, collection, contains }) {
   const [includes, setIncludes] = useState(contains);
 
   function handleClick(event) {
-    console.log('wordId: ', wordId);
-    console.log('collectionId: ', event.target.value);
     event.preventDefault();
     if (includes) {
       removeWordFromCollection(wordId, event.target.value);

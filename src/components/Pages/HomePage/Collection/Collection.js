@@ -35,7 +35,11 @@ const Collection = () => {
       return selectedUniqueIndexes.includes(item.id);
     });
 
-    setSelectedWords(result);
+    if (result.length === 0) {
+      setSelectedWords(data.words);
+    } else {
+      setSelectedWords(result);
+    }
   }, [data]);
 
   return (

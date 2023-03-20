@@ -9,15 +9,15 @@ import WordPage from '../Pages/WordPage/WordPage.js';
 const CustomRouter = () => {
   return (
     <>
-      <Header />
       <BrowserRouter>
+        <Header />
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/:id" element={<WordPage />} />
           <Route path="/add" element={<AddNewWord />} />
         </Routes>
+        <Footer />
       </BrowserRouter>
-      <Footer />
     </>
   );
 };

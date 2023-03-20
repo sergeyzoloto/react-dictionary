@@ -5,7 +5,6 @@ export default function AppReducer(state, action) {
   and send it down to your application */
   switch (action.type) {
     case 'GET_WORD_DEFINITION':
-      console.log('action.payload.data', action.payload[0]);
       return {
         ...state,
         error: null,
