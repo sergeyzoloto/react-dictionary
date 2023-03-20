@@ -38,7 +38,7 @@ const initialState = {
     ],
   },
   error: null,
-  loading: true,
+  loading: false,
 };
 
 // Create context
@@ -58,6 +58,7 @@ export const GlobalProvider = ({ children }) => {
   const [state, dispatch] = useReducer(AppReducer, savedData);
 
   const [sideBarIsOpen, setSideBarIsOpen] = useState(false);
+  const [newWindowIsOpen, setNewWindowIsOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('words_storage', JSON.stringify(state));
@@ -66,17 +67,11 @@ export const GlobalProvider = ({ children }) => {
   // Actions
   async function getDefinition(query) {
     try {
-      /*
-      const response = await fetch(
-      `https://api`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      },
-      */
-      const response = await axios.get(API + query);
-      //console.log('response', Object.keys(response.data), response);
+      dispatch({
+        type: 'LOADING',
+      });
 
+      const response = await axios.get(API + query);
       dispatch({
         type: 'GET_WORD_DEFINITION',
         payload: response.data,
@@ -84,7 +79,7 @@ export const GlobalProvider = ({ children }) => {
     } catch (error) {
       dispatch({
         type: 'ERROR',
-        payload: error.response.data.error,
+        payload: error.response.data,
       });
     }
   }
@@ -183,6 +178,8 @@ export const GlobalProvider = ({ children }) => {
     removeWordFromCollection,
     sideBarIsOpen,
     setSideBarIsOpen,
+    newWindowIsOpen,
+    setNewWindowIsOpen,
   };
 
   return (
