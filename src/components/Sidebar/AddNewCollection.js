@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useWordsContext } from '../../../../context/GlobalState.js';
+import { useWordsContext } from '../../context/GlobalState.js';
 import { v4 } from 'uuid';
 
 function AddNewCollection() {

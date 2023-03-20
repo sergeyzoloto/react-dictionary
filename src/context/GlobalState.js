@@ -64,7 +64,7 @@ export const GlobalProvider = ({ children }) => {
   }, [state]);
 
   // Actions
-  async function getDefinition() {
+  async function getDefinition(query) {
     try {
       /*
       const response = await fetch(
@@ -74,11 +74,12 @@ export const GlobalProvider = ({ children }) => {
         headers: { 'Content-Type': 'application/json' },
       },
       */
-      const response = await axios.get(API);
+      const response = await axios.get(API + query);
+      //console.log('response', Object.keys(response.data), response);
 
       dispatch({
         type: 'GET_WORD_DEFINITION',
-        payload: response.data.data,
+        payload: response.data,
       });
     } catch (error) {
       dispatch({
