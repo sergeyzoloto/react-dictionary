@@ -1,13 +1,21 @@
 import './WordPage.css';
-import React, { useState } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router';
 import { useWordsContext } from '../../../context/GlobalState.js';
 import Sidebar from '../../Sidebar/Sidebar';
+import CollectionList from '../../CollectionList/CollectionList.js';
 
 function WordPage() {
   const { id } = useParams();
   const context = useWordsContext();
-  const { data, getDefinition } = context;
+  const { data, getCollections, getDefinition, error, loading } = context;
+
+  console.log('context: ', context);
+  useEffect(() => {
+    getCollections();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const word = data.words.filter((word) => {
     return word.id.toString() === id;
   })[0];
@@ -22,12 +30,12 @@ function WordPage() {
     <>
       <Sidebar />
       <h3>{word.word}</h3>
-      <Details dictionary={word.dictionary} />
+      <Details dictionary={word.dictionary} error={error} loading={loading} />
       <div>
-        <button onClick={clickHandler}>GET</button>
+        <button onClick={clickHandler}>GET DATA</button>
       </div>
       <div>
-        <CollectionList collections={collections} />
+        <CollectionList wordId={word.id} collections={collections} />
       </div>
     </>
   );
@@ -177,7 +185,23 @@ function SourceUrls({ sourceUrls = [] }) {
   }
 }
 
-function Details({ dictionary = [] }) {
+function Details({ dictionary = null, error = null, loading = false }) {
+  if (error)
+    return (
+      <div>
+        <h3>{error.title}</h3>
+        <p>{error.message}</p>
+        <p>{error.resolution}</p>
+      </div>
+    );
+
+  if (loading)
+    return (
+      <div>
+        <h3>Loading...</h3>
+      </div>
+    );
+
   if (dictionary !== null && dictionary.length !== 0) {
     return (
       <>
@@ -200,47 +224,4 @@ function Details({ dictionary = [] }) {
   }
 }
 
-function CollectionList({ collections }) {
-  const { id } = useParams();
-
-  return collections.map((collection) => {
-    return (
-      <Collection
-        key={collection.id}
-        collection={collection}
-        contains={collection.words.includes(id)}
-      />
-    );
-  });
-}
-
-function Collection({ collection, contains }) {
-  const { id } = useParams();
-  const context = useWordsContext();
-  const { addWordToCollection, removeWordFromCollection } = context;
-  const [includes, setIncludes] = useState(contains);
-
-  function handleClick(event) {
-    event.preventDefault();
-    if (includes) {
-      removeWordFromCollection(id, event.target.value);
-      setIncludes(false);
-    } else {
-      addWordToCollection(id, event.target.value);
-      setIncludes(true);
-    }
-  }
-
-  return (
-    <button
-      className={
-        includes ? 'collection-item-includes' : 'collection-item-excludes'
-      }
-      onClick={handleClick}
-      value={collection.id}
-    >
-      {collection.title}
-    </button>
-  );
-}
 export default WordPage;

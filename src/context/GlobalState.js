@@ -38,7 +38,7 @@ const initialState = {
     ],
   },
   error: null,
-  loading: true,
+  loading: false,
 };
 
 // Create context
@@ -66,25 +66,24 @@ export const GlobalProvider = ({ children }) => {
   // Actions
   async function getDefinition(query) {
     try {
-      /*
-      const response = await fetch(
-      `https://api`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-      },
-      */
-      const response = await axios.get(API + query);
-      //console.log('response', Object.keys(response.data), response);
+      dispatch({
+        type: 'LOADING',
+      });
 
+      const response = await axios.get(API + query);
       dispatch({
         type: 'GET_WORD_DEFINITION',
         payload: response.data,
       });
     } catch (error) {
+      console.log(
+        'error',
+        Object.keys(error.response.data),
+        error.response.data,
+      );
       dispatch({
         type: 'ERROR',
-        payload: error.response.data.error,
+        payload: error.response.data,
       });
     }
   }

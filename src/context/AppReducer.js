@@ -8,6 +8,8 @@ export default function AppReducer(state, action) {
       console.log('action.payload.data', action.payload[0]);
       return {
         ...state,
+        error: null,
+        loading: false,
         data: {
           ...state.data,
           words: state.data.words.map((word) => {
@@ -76,19 +78,12 @@ export default function AppReducer(state, action) {
           ...state.data,
           collections: state.data.collections.map((collection) => {
             if (collection.id === action.payload.collectionId) {
-              console.log('collection to update is found', collection.title);
               const result = {
                 ...collection,
                 words: collection.words.filter((id) => {
                   return id !== action.payload.wordId;
                 }),
               };
-              console.log(
-                'action.payload.wordId:',
-                typeof action.payload.wordId,
-              );
-              console.log('words:', collection.words);
-              console.log('result', result);
               return result;
             } else {
               return collection;
@@ -136,8 +131,8 @@ export default function AppReducer(state, action) {
       return {
         ...state,
         data: {
+          ...state.data,
           words: [action.payload, ...state.data.words],
-          collections: state.data.collections,
         },
       };
 
@@ -168,10 +163,13 @@ export default function AppReducer(state, action) {
       };
 
     case 'GET_COLLECTIONS':
-      return state;
+      return { ...state, error: null };
+
+    case 'LOADING':
+      return { ...state, loading: true };
 
     case 'ERROR':
-      return { ...state, loading: false, data: action.payload };
+      return { ...state, loading: false, error: action.payload };
 
     default:
       return state;
