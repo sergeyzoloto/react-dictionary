@@ -4,11 +4,13 @@ import { useParams } from 'react-router';
 import { useWordsContext } from '../../../context/GlobalState.js';
 import Sidebar from '../../Sidebar/Sidebar';
 import CollectionList from '../../CollectionList/CollectionList.js';
+import Word from '../../Word/Word';
+import CustomField from '../../CustomField/CustomField';
 
 function WordPage() {
   const { id } = useParams();
   const context = useWordsContext();
-  const { data, getCollections, getDefinition, error, loading } = context;
+  const { data, getCollections, getDefinition } = context;
 
   useEffect(() => {
     getCollections();
@@ -28,8 +30,13 @@ function WordPage() {
   return (
     <>
       <Sidebar />
-      <h3>{word.word}</h3>
-      <Details dictionary={word.dictionary} error={error} loading={loading} />
+      <Word word={word} />
+
+      <div className="custom-field-container">
+        <CustomField word={word} />
+      </div>
+
+      <Details dictionary={word.dictionary} />
       <div>
         <button onClick={clickHandler}>GET DATA</button>
       </div>
@@ -184,7 +191,10 @@ function SourceUrls({ sourceUrls = [] }) {
   }
 }
 
-function Details({ dictionary = null, error = null, loading = false }) {
+function Details({ dictionary = null }) {
+  const context = useWordsContext();
+  const { error, loading } = context;
+
   if (error)
     return (
       <div>
