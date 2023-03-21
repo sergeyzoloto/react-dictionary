@@ -1,6 +1,5 @@
 import React from 'react';
 import { Route, Routes, BrowserRouter } from 'react-router-dom';
-import Footer from '../Footer/Footer.js';
 import Header from '../Header/Header.js';
 import AddNewWord from '../Pages/AddNewWord/AddNewWord.js';
 import HomePage from '../Pages/HomePage/HomePage.js';
@@ -16,7 +15,6 @@ const CustomRouter = () => {
           <Route path="/:id" element={<WordPage />} />
           <Route path="/add" element={<AddNewWord />} />
         </Routes>
-        <Footer />
       </BrowserRouter>
     </>
   );
