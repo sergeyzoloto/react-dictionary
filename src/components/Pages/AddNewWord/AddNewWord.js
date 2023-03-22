@@ -18,7 +18,8 @@ const AddNewWord = () => {
   }
 
   return (
-    <div>
+    <div className="new-word-page">
+      <h3>New word</h3>
       <form onSubmit={onSubmit} className="form-container">
         <div className="form-control">
           <input

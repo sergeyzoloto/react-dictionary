@@ -1,3 +1,9 @@
+.word-page {
+  position: absolute;
+  top: 55px;
+  padding: 16px;
+}
+
 .collection-item-includes,
 .collection-item-excludes {
   border: 1px solid blue;

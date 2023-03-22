@@ -1,5 +1,5 @@
 :root {
-  --red: #d1453b;
+  --red: hsl(4, 62%, 53%);
 }
 
 .header-link {
@@ -8,6 +8,7 @@
   height: 40px;
   margin: auto;
   margin-left: 8px;
+  line-height: 1.25;
 }
 
 .header-button-container {
@@ -97,6 +98,11 @@
   justify-content: space-between;
   align-items: stretch;
   align-content: stretch;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 55px;
+  z-index: 11;
 }
 
 .header-left {

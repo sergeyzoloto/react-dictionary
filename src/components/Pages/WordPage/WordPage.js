@@ -28,13 +28,15 @@ function WordPage() {
   return (
     <>
       <Sidebar />
-      <h3>{word.word}</h3>
-      <Details dictionary={word.dictionary} error={error} loading={loading} />
-      <div>
-        <button onClick={clickHandler}>GET DATA</button>
-      </div>
-      <div>
-        <CollectionList wordId={word.id} collections={collections} />
+      <div className="word-page">
+        <h3>{word.word}</h3>
+        <Details dictionary={word.dictionary} error={error} loading={loading} />
+        <div>
+          <button onClick={clickHandler}>GET DATA</button>
+        </div>
+        <div>
+          <CollectionList wordId={word.id} collections={collections} />
+        </div>
       </div>
     </>
   );

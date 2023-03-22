@@ -1,3 +1,9 @@
+.home-page {
+  position: absolute;
+  top: 55px;
+  padding: 16px;
+}
+
 .collection-item-active,
 .collection-item-inactive {
   border: 1px solid blue;
@@ -27,12 +33,4 @@
 .word-container > *,
 .collection-item > * {
   margin: 4px;
-}
-
-.side-bar {
-  display: none;
-}
-
-.open {
-  display: block;
 }

@@ -15,9 +15,11 @@ const HomePage = () => {
 
   return (
     <>
-      <h3>HomePage</h3>
       <Sidebar />
-      <Collection />
+      <div className="home-page">
+        <h3>HomePage</h3>
+        <Collection />
+      </div>
     </>
   );
 };
