@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useWordsContext } from '../../../../context/GlobalState';
 import { removeDuplicates } from '../../../../utils/removeDuplicates';
-import { Link } from 'react-router-dom';
+import Word from '../../../Word/Word.js';
 
 const Collection = () => {
   const context = useWordsContext();
