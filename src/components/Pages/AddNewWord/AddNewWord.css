@@ -1,0 +1,12 @@
+.new-word-page {
+  position: absolute;
+  top: 55px;
+  padding: 16px 16px 16px 325px;
+  width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  .new-word-page {
+    padding: 16px 16px 16px 32px;
+  }
+}

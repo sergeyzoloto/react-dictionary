@@ -11,28 +11,38 @@ const CollectionButton = ({ collection }) => {
   if (isEditing) {
     collectionContent = (
       <>
-        <input
-          value={collection.title}
-          onChange={(event) => {
-            updateCollection({ ...collection, title: event.target.value });
-          }}
-        />
-        <button onClick={() => setIsEditing(false)}>Save</button>
+        <label>
+          <input
+            type="text"
+            value={collection.title}
+            onChange={(event) => {
+              updateCollection({ ...collection, title: event.target.value });
+            }}
+          />
+        </label>
+        <button onClick={() => setIsEditing(false)} className="save-btn">
+          &#9745;
+        </button>
       </>
     );
   } else {
     collectionContent = (
       <>
         {collection.title}
-        <label>
-          <button
-            onClick={() => {
-              setIsEditing(true);
-            }}
-          >
-            Edit
-          </button>
-        </label>
+        <button
+          className="edit-btn"
+          onClick={() => {
+            setIsEditing(true);
+          }}
+        >
+          /
+        </button>
+        <button
+          className="delete-btn"
+          onClick={() => deleteCollection(collection.id)}
+        >
+          &#9747;
+        </button>
       </>
     );
   }
@@ -60,8 +70,7 @@ const CollectionButton = ({ collection }) => {
           onClick={clickHandler}
           value={collection.id}
         ></button>
-        {collectionContent}
-        <button onClick={() => deleteCollection(collection.id)}>delete</button>
+        <div className="buttons-container">{collectionContent}</div>
       </label>
     </>
   );

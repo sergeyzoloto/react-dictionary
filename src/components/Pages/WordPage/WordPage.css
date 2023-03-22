@@ -1,37 +1,86 @@
+.word-page {
+  position: absolute;
+  top: 55px;
+  padding: 16px 16px 16px 325px;
+  width: 100%;
+}
+
+@media screen and (max-width: 640px) {
+  .word-page {
+    padding: 16px 16px 16px 32px;
+  }
+}
+
+.phonetic-element,
+.definition-element,
+.source-element,
+.meaning-element {
+  margin: 8px 0;
+  padding: 16px;
+  background-color: whitesmoke;
+}
+
+ul {
+  list-style: none;
+}
+
+.get-btn {
+  color: black;
+  border-radius: 5px;
+  height: 45px;
+  width: 45px;
+  line-height: 20px;
+  opacity: 1;
+  padding: 2px 5px;
+  position: absolute;
+  transition: opacity 0.3s ease;
+  cursor: pointer;
+  border: 0;
+  background-color: white;
+}
+
+.get-btn-container {
+  height: 45px;
+  width: 45px;
+  position: absolute;
+  right: 16px;
+  top: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.get-btn:hover {
+  background-color: var(--red);
+  color: white;
+}
+
+.collection-list {
+  margin: 16px 0;
+}
+
 .collection-item-includes,
 .collection-item-excludes {
-  border: 1px solid blue;
+  border: 0;
+  margin: 4px 4px;
+  padding: 8px;
+  min-width: fit-content;
+  width: 70px;
+  cursor: pointer;
+  border-radius: 5px;
 }
 
 .collection-item-includes {
-  background-color: red;
+  background-color: var(--red);
   color: white;
 }
+
 .collection-item-excludes {
-  background-color: orange;
-  color: white;
+  background-color: rgb(235, 235, 235);
 }
 
-.hidden-btn {
-  display: none;
-}
-
-.word-container,
-.form-container {
+.collections-container {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
-  margin: 4px;
-}
-
-.word-container > *,
-.collection-item > * {
-  margin: 4px;
-}
-
-.side-bar {
-  display: none;
-}
-
-.open {
-  display: block;
 }

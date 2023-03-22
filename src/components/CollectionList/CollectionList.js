@@ -3,16 +3,23 @@ import { useWordsContext } from '../../context/GlobalState';
 
 function CollectionList({ wordId, collections }) {
   if (collections !== null && collections.length !== 0) {
-    return collections.map((collection) => {
-      return (
-        <Collection
-          key={collection.id}
-          wordId={wordId}
-          collection={collection}
-          contains={collection.words.includes(wordId)}
-        />
-      );
-    });
+    return (
+      <>
+        <h3>add to collections</h3>
+        <div className="collections-container">
+          {collections.map((collection) => {
+            return (
+              <Collection
+                key={collection.id}
+                wordId={wordId}
+                collection={collection}
+                contains={collection.words.includes(wordId)}
+              />
+            );
+          })}
+        </div>
+      </>
+    );
   } else {
     return;
   }

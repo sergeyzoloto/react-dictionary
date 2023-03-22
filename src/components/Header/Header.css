@@ -1,9 +1,107 @@
-.header {
-  border: 1px solid red;
+.header-link {
+  font-size: xx-large;
+  color: white;
+  height: 40px;
+  margin: auto;
+  margin-left: 8px;
+  line-height: 1.25;
 }
 
-.header h3 {
-  margin: 0 100px;
-  margin-block-start: 1em;
-  margin-block-end: 1em;
+.header-button-container {
+  padding: 2px;
+  margin: 2px;
+  height: 50px;
+  width: 50px;
+}
+
+.header-button {
+  background-color: var(--red);
+  border: none;
+  margin: 2px;
+}
+
+#add-bar,
+#menu-bar {
+  margin: 6px;
+}
+
+#menu-bar {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+.bar {
+  position: relative;
+  height: 4px;
+  width: 100%;
+  background-color: white;
+  display: block;
+  border-radius: 5px;
+  transition: 0.3s ease;
+  top: 9px;
+}
+
+#bar1 {
+  transform: translateY(-4px);
+}
+
+#bar3 {
+  transform: translateY(4px);
+}
+
+.pushed {
+  display: block;
+  background-color: #ff6557;
+}
+
+.pushed #bar1 {
+  transform: translateY(4px) rotateZ(-45deg);
+}
+
+.pushed #bar2 {
+  opacity: 0;
+}
+
+.pushed #bar3 {
+  transform: translateY(-4px) rotateZ(45deg);
+}
+.pushed #bar4 {
+  transform: translateY(4px) rotateZ(225deg);
+}
+
+.pushed #bar5 {
+  transform: translateY(0px) rotateZ(135deg);
+}
+
+#add-bar {
+  width: 30px;
+  height: 30px;
+  cursor: pointer;
+}
+
+#bar4 {
+  transform: translateY(4px) rotateZ(90deg);
+}
+
+#bar5 {
+  transform: translateY(0px);
+}
+
+.header-container {
+  background-color: var(--red);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  align-content: stretch;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  height: 55px;
+  z-index: 11;
+}
+
+.header-left {
+  display: flex;
+  align-items: stretch;
 }
