@@ -17,7 +17,7 @@ const HomePage = () => {
     <>
       <Sidebar />
       <div className="home-page">
-        <h3>HomePage</h3>
+        <h3 className="title">Your dictionary</h3>
         <Collection />
       </div>
     </>

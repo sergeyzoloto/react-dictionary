@@ -29,13 +29,16 @@ function WordPage() {
     <>
       <Sidebar />
       <div className="word-page">
-        <h3>{word.word}</h3>
-        <Details dictionary={word.dictionary} error={error} loading={loading} />
-        <div>
-          <button onClick={clickHandler}>GET DATA</button>
-        </div>
-        <div>
+        <h2>word: {word.word}</h2>
+        <h3>translate: {word.customField}</h3>
+        <div className="collection-list">
           <CollectionList wordId={word.id} collections={collections} />
+        </div>
+        <Details dictionary={word.dictionary} error={error} loading={loading} />
+        <div className="get-btn-container">
+          <button className="get-btn" onClick={clickHandler}>
+            GET
+          </button>
         </div>
       </div>
     </>
@@ -46,7 +49,7 @@ function Audio({ audio = null }) {
   if (audio !== null && audio !== '') {
     return (
       <div>
-        audio:{' '}
+        <p>audio:</p>
         <audio controls>
           <source src={audio} type="audio/mpeg"></source>
           Your browser does not support the audio element.
@@ -68,10 +71,10 @@ function Phoneme({ text = null }) {
 
 function PhoneticElement({ phonetic = null }) {
   return (
-    <>
+    <div className="phonetic-element">
       <Audio audio={phonetic.audio} />
       <Phoneme text={phonetic.text} />
-    </>
+    </div>
   );
 }
 
@@ -132,7 +135,7 @@ function Example({ example = null }) {
 function DefinitionElement({ definition = null }) {
   if (definition !== null && definition !== '') {
     return (
-      <div>
+      <div className="definition-element">
         <DefinitionString string={definition.definition} />
         <Synonyms synonyms={definition.synonyms} />
         <Antonyms antonyms={definition.antonyms} />
@@ -155,10 +158,10 @@ function Definitions({ definitions = [] }) {
 
 function MeaningElement({ meaning = null }) {
   return (
-    <>
+    <div className="meaning-element">
       <PartOfSpeech partOfSpeech={meaning.partOfSpeech} />
       <Definitions definitions={meaning.definitions} />
-    </>
+    </div>
   );
 }
 
@@ -176,8 +179,10 @@ function SourceUrls({ sourceUrls = [] }) {
   if (sourceUrls !== null && sourceUrls.length !== 0) {
     return sourceUrls.map((item, index) => {
       return (
-        <li key={index}>
-          {index + 1}: <a href={item}>{item}</a>
+        <li className="source-element" key={index}>
+          <a target="_blank" rel="noreferrer" href={item}>
+            {item}
+          </a>
         </li>
       );
     });
@@ -216,7 +221,9 @@ function Details({ dictionary = null, error = null, loading = false }) {
         </div>
         <div>
           <h3>sources</h3>
-          <SourceUrls sourceUrls={dictionary.sourceUrls} />
+          <ul>
+            <SourceUrls sourceUrls={dictionary.sourceUrls} />
+          </ul>
         </div>
       </>
     );

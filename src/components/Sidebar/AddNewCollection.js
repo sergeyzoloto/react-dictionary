@@ -11,24 +11,29 @@ function AddNewCollection() {
     event.preventDefault();
     const newCollection = { id: v4(), title: text, words: [] };
     addCollection(newCollection);
+    setText('');
   }
 
   return (
-    <div>
-      <form onSubmit={onSubmit} className="form-container">
-        <div className="form-control">
+    <>
+      <form
+        onSubmit={onSubmit}
+        className="form-control"
+        id="new-collection-form"
+      >
+        <label>
           <input
             type="text"
             value={text}
             onChange={(event) => {
               setText(event.target.value);
             }}
-            placeholder="Enter text"
+            placeholder="new collection"
           ></input>
-        </div>
-        <button>+</button>
+        </label>
+        <button className="add-btn">+</button>
       </form>
-    </div>
+    </>
   );
 }
 

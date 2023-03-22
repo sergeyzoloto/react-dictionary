@@ -9,19 +9,19 @@ const Sidebar = () => {
   const { sideBarIsOpen } = context;
   return (
     <>
-      {' '}
       <div className={sideBarIsOpen ? 'overlay shadow' : 'overlay'}></div>
       <div
         id="sidebar"
         className={sideBarIsOpen ? 'sidebar-open' : 'sidebar-hidden'}
       >
-        <h3>Sidebar</h3>
         {context.data.collections.map((item) => (
           <div className="collection-item" key={item.id}>
             <CollectionButton collection={item} />
           </div>
         ))}
-        <AddNewCollection />
+        <div className="form-container">
+          <AddNewCollection />
+        </div>
       </div>
     </>
   );

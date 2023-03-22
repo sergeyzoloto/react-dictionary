@@ -1,36 +1,20 @@
 .home-page {
   position: absolute;
   top: 55px;
-  padding: 16px;
+  padding: 16px 16px 16px 325px;
+  width: 100%;
 }
 
-.collection-item-active,
-.collection-item-inactive {
-  border: 1px solid blue;
+.title {
+  margin: 12px 42px 12px;
 }
 
-.collection-item-active {
-  background-color: red;
-  color: white;
-}
-.collection-item-inactive {
-  background-color: orange;
-  color: white;
+.wide {
+  width: 100%;
 }
 
-.hidden-btn {
-  display: none;
-}
-
-.word-container,
-.collection-item,
-.form-container {
-  display: flex;
-  flex-direction: row;
-  margin: 4px;
-}
-
-.word-container > *,
-.collection-item > * {
-  margin: 4px;
+@media screen and (max-width: 640px) {
+  .home-page {
+    padding: 16px 16px 16px 32px;
+  }
 }
