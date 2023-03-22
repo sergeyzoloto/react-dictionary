@@ -45,12 +45,18 @@ input[type='text']:focus {
 .collection-item-active,
 .collection-item-inactive,
 .form-control,
-.word-wrapper {
+.word-wrapper,
+.custom-field-wrapper {
   margin: 2px 4px 2px 24px;
   padding: 8px 0;
   width: 100%;
   cursor: pointer;
   border-radius: 5px;
+}
+
+.word-wrapper,
+.word-wrapper {
+  height: 35px;
 }
 
 .collection-item-active {
@@ -63,7 +69,8 @@ input[type='text']:focus {
 
 .collection-item,
 .form-container,
-.word-container {
+.word-container,
+.custom-field-container {
   display: flex;
   flex-direction: row;
   align-items: center;
@@ -112,6 +119,7 @@ input[type='text']:focus {
 }
 
 .collection-item :hover .delete-btn,
+.custom-field-container :hover .delete-btn,
 .word-container :hover .delete-btn {
   background-color: var(--red);
   opacity: 1;
@@ -141,6 +149,7 @@ input[type='text']:focus {
 }
 
 .collection-item :hover .edit-btn,
+.custom-field-container :hover .edit-btn,
 .word-container :hover .edit-btn {
   background-color: blue;
   opacity: 1;
@@ -151,6 +160,7 @@ input[type='text']:focus {
 }
 
 .collection-item :hover .save-btn,
+.custom-field-container :hover .save-btn,
 .word-container :hover .save-btn {
   background-color: green;
   opacity: 1;
@@ -161,12 +171,14 @@ input[type='text']:focus {
 }
 
 .form-container :hover .add-btn,
+.custom-field-container :hover .add-btn,
 .word-container :hover .add-btn {
   background-color: green;
   opacity: 1;
 }
 
 .form-container,
+.custom-field-container,
 .word-container {
   display: flex;
   justify-content: space-between;

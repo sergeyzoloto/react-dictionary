@@ -9,67 +9,69 @@ export default function CustomField({ word }) {
 
   let customFieldContent;
 
-  const deleteButton = (
-    <label>
-      <button onClick={() => updateWord({ ...word, customField: null })}>
-        delete
-      </button>
-    </label>
-  );
-
   if (isEditing) {
     customFieldContent = (
       <>
-        <input
-          value={word.customField ? word.customField : ''}
-          onChange={(event) => {
-            updateWord({ ...word, customField: event.target.value });
-          }}
-        />
-        <button onClick={() => setIsEditing(false)}>save</button>
-        {deleteButton}
+        <label>
+          <input
+            type="text"
+            value={word.customField}
+            onChange={(event) => {
+              updateWord({ ...word, customField: event.target.value });
+            }}
+          />
+        </label>
+        <button className="save-btn" onClick={() => setIsEditing(false)}>
+          &#9745;
+        </button>
       </>
     );
   } else if (
-    typeof word.customField !== 'undefined' ||
+    typeof word.customField === 'undefined' ||
     word.customField === null ||
-    word.customField !== ''
+    word.customField === ''
   ) {
     customFieldContent = (
       <>
-        <label>
-          <button
-            onClick={() => {
-              setIsEditing(true);
-            }}
-          >
-            add
-          </button>
-        </label>
+        <button
+          className="add-btn"
+          onClick={() => {
+            setIsEditing(true);
+          }}
+        >
+          add
+        </button>
       </>
     );
   } else {
     customFieldContent = (
       <>
         <p>{word.customField}</p>
-        <label>
-          <button
-            onClick={() => {
-              setIsEditing(true);
-            }}
-          >
-            change
-          </button>
-        </label>
-        {deleteButton}
+        <button
+          className="edit-btn"
+          onClick={() => {
+            setIsEditing(true);
+          }}
+        >
+          /
+        </button>
+        <button
+          className="delete-btn"
+          onClick={() => updateWord({ ...word, customField: null })}
+        >
+          &#9747;
+        </button>
       </>
     );
   }
 
   return (
-    <div className="custom-field-container">
-      <p>translate</p>
-      {customFieldContent}
-    </div>
+    <>
+      <div className="custom-field-container">
+        <div className="custom-field-wrapper">
+          <div className="buttons-container">{customFieldContent}</div>
+        </div>
+      </div>
+    </>
   );
 }

@@ -13,38 +13,48 @@ export default function Word({ word }) {
   if (isEditing) {
     wordContent = (
       <>
-        <input
-          value={word.word}
-          onChange={(event) => {
-            updateWord({ ...word, word: event.target.value });
-          }}
-        />
-        <button onClick={() => setIsEditing(false)}>Save</button>
+        <label>
+          <input
+            type="text"
+            value={word.word}
+            onChange={(event) => {
+              updateWord({ ...word, word: event.target.value });
+            }}
+          />
+        </label>
+        <button className="save-btn" onClick={() => setIsEditing(false)}>
+          &#9745;
+        </button>
       </>
     );
   } else {
     wordContent = (
       <>
-        <Link to={'/' + word.id}>{word.word}</Link>
-        <label>
-          <button
-            onClick={() => {
-              setIsEditing(true);
-            }}
-          >
-            rename
-          </button>
-        </label>
+        <Link className="wide" to={'/' + word.id}>
+          <p>
+            {word.word} {word.customField}
+          </p>
+        </Link>
+        <button
+          className="edit-btn"
+          onClick={() => {
+            setIsEditing(true);
+          }}
+        >
+          /
+        </button>
+        <button className="delete-btn" onClick={() => deleteWord(word.id)}>
+          &#9747;
+        </button>
       </>
     );
   }
 
   return (
     <div className="word-container">
-      {wordContent}
-      <label>
-        <button onClick={() => deleteWord(word.id)}>delete</button>
-      </label>
+      <div className="word-wrapper">
+        <div className="buttons-container">{wordContent}</div>
+      </div>
     </div>
   );
 }

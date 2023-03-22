@@ -4,7 +4,6 @@ import { useParams } from 'react-router';
 import { useWordsContext } from '../../../context/GlobalState.js';
 import Sidebar from '../../Sidebar/Sidebar';
 import CollectionList from '../../CollectionList/CollectionList.js';
-import Word from '../../Word/Word';
 import CustomField from '../../CustomField/CustomField';
 
 function WordPage() {
@@ -33,19 +32,16 @@ function WordPage() {
       <div className="word-page">
         <h2>word: {word.word}</h2>
         <h3>translate:</h3>
-       <div className="custom-field-container">
         <CustomField word={word} />
-      </div>
         <div className="collection-list">
           <CollectionList wordId={word.id} collections={collections} />
         </div>
-        <Details dictionary={word.dictionary} error={error} loading={loading} />
+        <Details dictionary={word.dictionary} />
         <div className="get-btn-container">
           <button className="get-btn" onClick={clickHandler}>
             GET
           </button>
         </div>
-
       </div>
     </>
   );
